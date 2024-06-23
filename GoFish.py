@@ -1,6 +1,7 @@
 from card import *
 from termcolor import colored, cprint
 from prettytable import PrettyTable
+from openai import OpenAI
 
 
 class CardGame:
