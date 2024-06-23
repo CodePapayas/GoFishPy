@@ -32,6 +32,9 @@ class CardGame:
             dealer_tracker += 1
             cards_dealt += 1
 
+    def go_fish(self, hand):
+        hand.append(self._deck.pop(0))
+
     def populate_tables(self):
         self._player_table.clear_rows()
         self._ai_table.clear_rows()
@@ -60,6 +63,10 @@ class CardGame:
         match_check(self._ai_deck, self._ai_match_pile)
         self.populate_tables()
         hand = self._ai_deck
+        hand_str = ', '.join(f"{card.get_value()} of {card.get_suit()}" for card in hand)
+        prompt = (f"This is your hand: {hand_str}. The game is Go Fish. Your job is to ask your opponent for a card with"
+                  f"a matching value to a card from your hand. Values are the species names. Only return the question.")
+        return ai_logic(prompt, max_tokens=100)
 
     def player_turn(self):
         match_check(self._player_deck, self._player_match_pile)
@@ -78,5 +85,5 @@ game.deal_cards()
 game.populate_tables()
 game.print_tables()
 game.player_turn()
-game.ai_turn()
+print(game.ai_turn())
 game.print_tables()

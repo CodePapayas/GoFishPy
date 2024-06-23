@@ -1,5 +1,5 @@
 import random
-
+from collections import Counter
 
 class PlayingCard:
 
@@ -35,19 +35,24 @@ def build_deck():
 
 
 def match_check(hand, match_pile):
-    matches = set()
-    i = 0
-    while i < len(hand):
-        card = hand[i]
-        if card.get_value() in matches:
-            for match_card in hand:
-                if match_card.get_value() == card.get_value() and match_card != card:
-                    hand.remove(match_card)
-                    hand.remove(card)
-                    match_pile.append((match_card, card))
-        else:
-            matches.add(card.get_value())
-            i += 1
+    from collections import Counter
 
+    # Count occurrences of each card value
+    card_count = Counter(card.get_value() for card in hand)
 
-deck_1 = build_deck()
+    # Find cards that appear exactly four times
+    cards_to_remove = [value for value, count in card_count.items() if count == 4]
+
+    for card_value in cards_to_remove:
+        cards_removed = []
+        for card in hand[:]:
+            if card.get_value() == card_value:
+                hand.remove(card)
+                cards_removed.append(card)
+                if len(cards_removed) == 4:
+                    match_pile.append(tuple(cards_removed))
+                    break
+        if len(cards_removed) < 4:
+            hand_name = "AI Hand" if "ai" in match_pile.__repr__() else "Player Hand"
+            print(
+                f"Debug: Failed to remove 4 cards from {hand_name} for value {card_value}. Only removed {len(cards_removed)}.")

@@ -1,19 +1,16 @@
 import os
-import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 load_dotenv()
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def ai_logic(prompt, max_tokens=100):
     try:
-        response = openai.Completion.create(
-            engine="gpt-3.5-turbo-0125",
-            prompt=prompt,
-            max_tokens=max_tokens
-        )
-        return response.choice(0).text.strip()
+        response = client.completions.create(model="davinci-002",
+                                             prompt=prompt,
+                                             max_tokens=max_tokens)
+        return response.choices[0].text.strip()
     except Exception as e:
         return str(e)
