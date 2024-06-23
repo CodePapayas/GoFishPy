@@ -1,6 +1,7 @@
 import random
 from collections import Counter
 
+
 class PlayingCard:
 
     def __init__(self, suit, value):
@@ -35,7 +36,6 @@ def build_deck():
 
 
 def match_check(hand, match_pile):
-    from collections import Counter
 
     # Count occurrences of each card value
     card_count = Counter(card.get_value() for card in hand)
