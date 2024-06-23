@@ -1,3 +1,5 @@
+# Author: Zachary Wilkins-Olson
+
 from card import *
 from termcolor import colored, cprint
 from prettytable import PrettyTable
