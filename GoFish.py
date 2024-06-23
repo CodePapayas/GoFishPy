@@ -67,7 +67,7 @@ class CardGame:
         messages = [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": f"This is your hand: {hand_str}. "
-                                        f"The game is Go Fish. Ask for a name match from your hand. "
+                                        f"The game is Go Fish. Ask for a name match from your hand."
                                         f"Do not mention color."}
         ]
         return ai_logic(messages)

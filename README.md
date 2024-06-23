@@ -38,7 +38,7 @@ To run this project, you will need your own OpenAI API key.
 #### 1. AI Logic
    - **Define AI Player Class**
      - Connect OpenAI to AI logic - ✅
-     - Refine prompt for better results (currently rambling) - 🫠
+     - Refine prompt for better results ~(currently rambling) - 🫠~ ✅
 
 #### 2. Turn Logic
    - **Define Player Class**
