@@ -47,7 +47,7 @@ def match_check(hand, match_pile):
                     match_pile.append((match_card, card))
         else:
             matches.add(card.get_value())
-        i += 1
+            i += 1
 
 
 deck_1 = build_deck()
