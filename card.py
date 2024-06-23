@@ -34,4 +34,20 @@ def build_deck():
     return deck
 
 
+def match_check(hand, match_pile):
+    matches = set()
+    i = 0
+    while i < len(hand):
+        card = hand[i]
+        if card.get_value() in matches:
+            for match_card in hand:
+                if match_card.get_value() == card.get_value() and match_card != card:
+                    hand.remove(match_card)
+                    hand.remove(card)
+                    match_pile.append((match_card, card))
+        else:
+            matches.add(card.get_value())
+        i += 1
+
+
 deck_1 = build_deck()
