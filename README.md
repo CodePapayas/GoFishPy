@@ -37,22 +37,13 @@ To run this project, you will need your own OpenAI API key.
 
 #### 1. AI Logic
    - **Define AI Player Class**
-     - Methods to make decisions
-     - Strategy for choosing cards to ask for
-     - Handling responses from the other player
-   
-   - **AI Player Initialization**
-     - Setting up initial hand
-     - Determining starting strategy
-     
-   - **AI Decision Making**
-     - Analyze hand to decide which card to ask for
-     - Adjust strategy based on game progress
+     - Connect OpenAI to AI logic - ✅
+     - Refine prompt for better results (currently rambling) - 🫠
 
 #### 2. Turn Logic
-   - **Define Player Class (if not already defined)**
+   - **Define Player Class**
      - Methods for player actions
-     - Managing hand of cards
+     - Managing hand of cards - ✅
      
    - **Player Turn Function**
      - Structure of a player's turn
@@ -69,17 +60,11 @@ To run this project, you will need your own OpenAI API key.
 
 #### 3. Game Logic
    - **Integrate Existing Components**
-     - Utilize existing deck building, shuffling, dealing, and matched set removal logic
+     - Utilize existing deck building, shuffling, dealing, and matched set removal logic - ✅
      
    - **Game Loop**
      - Main game loop to handle turns
      - Checking for game end conditions
-     
-   - **Game Rules**
-     - Traditional rules for Go Fish
-     - Parameters for winning:
-       - Two players
-       - Winning condition based on most books (sets of four cards of the same rank)
        
    - **Game End Logic**
      - Determining the winner
