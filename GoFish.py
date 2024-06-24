@@ -67,10 +67,25 @@ class CardGame:
         messages = [
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": f"This is your hand: {hand_str}. "
-                                        f"The game is Go Fish. Ask for a name match from your hand."
-                                        f"Do not mention color."}
+                                        f"The game is Go Fish. Return only the name, which is the value,"
+                                        f" of the card you are requesting. Your reply should be limited to the name"
+                                        f"only, nothing else."
+                                        f"Do not mention color. It should only return card.get_value(), "
+                                        f"not card.get_suit()"
+             }
         ]
-        return ai_logic(messages)
+        answer = ai_logic(messages)
+        print(answer)
+
+        deck_length = len(self._ai_deck)
+        for card in self._player_deck[:]:
+            if answer == card.get_value():
+                self._ai_deck.append(card)
+                self._player_deck.remove(card)
+        if deck_length < len(self._ai_deck):
+            self.ai_turn()
+        self.go_fish(self._ai_deck)
+        self.populate_tables()
 
     def player_turn(self):
         match_check(self._player_deck, self._player_match_pile)
@@ -89,5 +104,5 @@ game.deal_cards()
 game.populate_tables()
 game.print_tables()
 game.player_turn()
-print("AI Opponent:", game.ai_turn())
+game.ai_turn()
 game.print_tables()
